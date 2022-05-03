@@ -1,0 +1,9 @@
+@use "./fonts";
+@use "../abstracts/variables" as var;
+
+*,
+html,
+body {
+    font-family: "Montserrat";
+    color: var.$color-light-xl;
+}

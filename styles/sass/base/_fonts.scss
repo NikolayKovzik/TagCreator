@@ -1,0 +1,6 @@
+@use '../abstracts' as mix;
+
+@include mix.font-face("Montserrat","Montserrat-Regular","normal","normal");
+@include mix.font-face("Montserrat","Montserrat-Bold","normal","bold");
+@include mix.font-face("Montserrat","Montserrat-Italic","italic","normal");
+@include mix.font-face("Montserrat","Montserrat-Light","normal",300);
