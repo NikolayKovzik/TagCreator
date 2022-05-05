@@ -1,0 +1,46 @@
+@use "../abstracts/variables" as var;
+
+//sass --watch .\styles\sass\pages\:.\styles\css  
+
+.sections-wrapper {
+    height: 100vh;
+    display: flex;
+}
+
+.display-panel {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 70%;
+    height: 100%;
+}
+
+.form-section {
+    width: 30%;
+    height: 100%;
+}
+
+
+.tag {
+    display: flex;
+    justify-content: space-between;
+    min-width: 20px;
+    max-width: 29%;
+    padding: 5px 15px;
+    height:60px;
+    background-color: var.$color-primary;
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+    &__delete-icon {
+        display: inline-block;
+        margin: 5px;
+        width: 10px;
+    }
+    &__text {
+        width: 80%;
+        text-align: justify;
+        word-wrap: break-word;
+    }
+}
