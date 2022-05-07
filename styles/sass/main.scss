@@ -1,0 +1,76 @@
+@use "./abstracts/variables" as var;
+@use "./base";
+
+//sass --watch ./styles/sass/pages/:./styles/css
+
+.sections-wrapper {
+    height: 100vh;
+    display: flex;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    justify-content: space-around;
+}
+
+.display-panel {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 65%;
+    height: 100%;
+    background-color: var.$color-primary-light;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+.form-section {
+    width: 25%;
+    height: 100%;
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // min-width: 20px;
+    max-width: 29%;
+    padding: 1%;
+    height: 68px;
+    background-color: var.$color-primary;
+    border-radius: 5px;
+    user-select: none;
+    // overflow: hidden;
+
+    &__delete-icon {
+        width: 13%;
+        height: 100%;
+    }
+
+    &__svg-cross {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+
+        // @media (max-width: var.$laptop) {
+        //     width: 15px;
+        //     height: 15px;
+        //  }
+
+        &:hover{
+            transition: 0.5s;
+            fill: var.$color-light-xl;
+        }
+    }
+
+    &__text {
+        width: 85%;
+        text-align: justify;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+}
