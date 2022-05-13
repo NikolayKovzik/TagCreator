@@ -6,6 +6,7 @@ export class TagList {
         this.inputForm = document.querySelector(".form");
         this.display = document.querySelector(".display-panel");
         this.tagInput = this.inputForm["tag-input"];
+        this.formButton = document.querySelector(".form__button");
     }
 
     init() {
@@ -15,16 +16,24 @@ export class TagList {
                 this.appendNewTag(this.createNewTag());
             }
         })
+        this.tagInput.addEventListener('input', (event) => {
+            if (this.isInputValueValid()) {
+                this.tagInput.classList.remove('invalid');
+                this.formButton.removeAttribute('disabled');
+            } else {
+                this.tagInput.classList.add('invalid');
+                this.formButton.setAttribute('disabled', 'true');
+            }
+        })
     }
 
     isInputValueValid() {
-        if(!this.tagInput.value || this.tagInput.value.length > 40){
-            this.tagInput.classList.add('invalid')
-        } else return true;
+        return (!this.tagInput.value || this.tagInput.value.length > 40)  ? false : true;
     }
 
     createNewTag() {
         let newTag = new Tag(this.tagInput.value);
+        this.tagInput.value = '';
         this.tagContainer.push(newTag);
         return newTag;
     }
