@@ -230,6 +230,7 @@ body {
   line-height: 30px;
   height: 35px;
   margin-top: 20px;
+  user-select: none;
 }
 .switcher__checkbox:checked + .switcher__slider {
   background-color: #FAFAFA;
@@ -287,6 +288,11 @@ body {
 }
 .form-section .form__tag-input.invalid {
   border: 3px solid #9f1414;
+}
+.form-section .form__tag-input:disabled, .form-section .form__tag-input[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 .form-section .form__button {
   width: 40%;

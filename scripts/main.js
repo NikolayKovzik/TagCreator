@@ -8,9 +8,9 @@ window.addEventListener('beforeunload', setLocalStorage);
 let tagList = new TagList(getLocalStorage());
 
 
-function setLocalStorage() {  
-    localStorage.setItem('tagCreatorLocalStorage', JSON.stringify(tagList.getTagContainer())) 
-}   
+function setLocalStorage() {
+    localStorage.setItem('tagCreatorLocalStorage', JSON.stringify(tagList.tagContainer))
+}
 
 function getLocalStorage() {
     if (localStorage.getItem('tagCreatorLocalStorage')) {

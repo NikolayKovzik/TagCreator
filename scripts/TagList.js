@@ -3,25 +3,31 @@ import { Tag } from './Tag.js';
 export class TagList {
     constructor(tagArray) {
         this._tagContainer = tagArray;
+        this._isReadOnly = false;
         this.inputForm = document.querySelector(".form");
         this.display = document.querySelector(".display-panel");
         this.tagInput = this.inputForm["tag-input"];
         this.formButton = document.querySelector(".form__button");
         this.clearButton = document.querySelector(".clear-button");
         this.inputErrorMessage = document.querySelector(".form__error-message");
+        this.readOnlySwitcher = document.querySelector(".switcher__slider");
         // this.inputErrorWindow = document.querySelector(".input-error");
         this.init();
-        if(this._tagContainer.length) {
+        if (this._tagContainer.length) {
             this.restoreDisplay();
         }
     }
 
-    getTagContainer(){
+    get tagContainer() {
         return this._tagContainer
     }
 
+    get isReadOnly() {
+        return this._isReadOnly;
+    }
+
     restoreDisplay() {
-        this._tagContainer.forEach((tag)=>{
+        this._tagContainer.forEach((tag) => {
             this.appendNewTag(tag);
         })
     }
@@ -59,6 +65,9 @@ export class TagList {
         this.clearButton.addEventListener('click', () => {
             this.clearDisplay();
         });
+        this.readOnlySwitcher.addEventListener("click", () => {
+            this.toggleReadOnlyMode();
+        })
     }
 
     isInputValueValid() {
@@ -117,6 +126,29 @@ export class TagList {
         })
         // console.log(this._tagContainer)
         deleteIcon.parentNode.remove();
+    }
+
+    toggleReadOnlyMode() {
+        this._isReadOnly = this._isReadOnly ? false : true;
+        if(this._isReadOnly) {
+            this.formButton.setAttribute('disabled', 'true');
+            this.clearButton.setAttribute('disabled', 'true');
+            this.tagInput.setAttribute('disabled', 'true');
+            
+            this.display.querySelectorAll(".tag__delete-icon").forEach((cross)=>{
+                let crossClone = cross.cloneNode(true);
+                cross.parentNode.replaceChild(crossClone, cross);
+            })
+        } else {
+            this.formButton.removeAttribute('disabled');
+            this.clearButton.removeAttribute('disabled');
+            this.tagInput.removeAttribute('disabled');
+            this.display.querySelectorAll(".tag__delete-icon").forEach((cross)=>{
+                cross.addEventListener('click', (event) => {
+                    this.deleteTag(event.currentTarget)
+                })
+            })
+        }
     }
 }
 
