@@ -25,12 +25,19 @@
 }
 
 .form-section {
-    width: 25%;
+    width: 30%;
     padding-top: 50px;
     .form {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 40px;
+        height: 460px;
+
+        &__control-container {
+            display: flex;
+            justify-content: space-between;
+        }
 
         &__tag-input {
             height: 60px;
@@ -41,11 +48,16 @@
             &.invalid {
                 border: 3px solid var.$color-invalid;
             }
+            &:disabled,
+            &[disabled] {
+                border: 1px solid #999999;
+                background-color: #cccccc;
+                color: #666666;
+            }
         }
 
         &__button {
-            margin: 0 auto;
-            width: 50%;
+            width: 40%;
             height: 60px;
         }
     }

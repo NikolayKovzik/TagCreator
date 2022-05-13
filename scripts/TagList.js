@@ -1,57 +1,96 @@
 import { Tag } from './Tag.js';
 
 export class TagList {
-    constructor() {
-        this.tagContainer = [];
+    constructor(tagArray) {
+        this._tagContainer = tagArray;
+        this._isReadOnly = false;
         this.inputForm = document.querySelector(".form");
         this.display = document.querySelector(".display-panel");
         this.tagInput = this.inputForm["tag-input"];
         this.formButton = document.querySelector(".form__button");
         this.clearButton = document.querySelector(".clear-button");
+        this.inputErrorMessage = document.querySelector(".form__error-message");
+        this.readOnlySwitcher = document.querySelector(".switcher__slider");
+        // this.inputErrorWindow = document.querySelector(".input-error");
+        this.init();
+        if (this._tagContainer.length) {
+            this.restoreDisplay();
+        }
+    }
+
+    get tagContainer() {
+        return this._tagContainer
+    }
+
+    get isReadOnly() {
+        return this._isReadOnly;
+    }
+
+    restoreDisplay() {
+        this._tagContainer.forEach((tag) => {
+            this.appendNewTag(tag);
+        })
     }
 
     init() {
         this.inputForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            if (this.isInputValueValid() && this.isInputUnique()) {
+            let isUnique = this.isInputUnique();
+            let isValid = this.isInputValueValid();
+            if (isValid !== 'isEmpty' && isValid !== 'inputOverflow' && isUnique) {
                 this.appendNewTag(this.createNewTag());
+            }
+            if (!isUnique) {
+                this.inputErrorMessage.innerHTML = "Такой тег уже есть!";
             }
         });
         this.tagInput.addEventListener('input', () => {
-            if (this.isInputValueValid()) {
-                this.tagInput.classList.remove('invalid');
-                this.formButton.removeAttribute('disabled');
-            } else {
+            let isValid = this.isInputValueValid();
+            if (isValid === 'isEmpty') {
                 this.tagInput.classList.add('invalid');
                 this.formButton.setAttribute('disabled', 'true');
+                this.inputErrorMessage.innerHTML = "Нельзя добавить пустой тег.";
+            }
+            if (isValid === 'inputOverflow') {
+                this.tagInput.classList.add('invalid');
+                this.formButton.setAttribute('disabled', 'true');
+                this.inputErrorMessage.innerHTML = "Cлишком длинный тег!";
+            }
+            if (isValid === true) {
+                this.tagInput.classList.remove('invalid');
+                this.formButton.removeAttribute('disabled');
+                this.inputErrorMessage.innerHTML = "";
             }
         });
         this.clearButton.addEventListener('click', () => {
             this.clearDisplay();
         });
+        this.readOnlySwitcher.addEventListener("click", () => {
+            this.toggleReadOnlyMode();
+        })
     }
 
     isInputValueValid() {
-        return (!this.tagInput.value || this.tagInput.value.length > 40) ? false : true;
+        return (!this.tagInput.value) ? 'isEmpty' : (this.tagInput.value.length > 40) ? 'inputOverflow' : true;
     }
 
     isInputUnique() {
-        return this.tagContainer.reduce((isUnique, tag) => {
-            return (tag.content === this.tagInput.value  || !isUnique) ? false : true;
-        },true)
+        return this._tagContainer.reduce((isUnique, tag) => {
+            return (tag.content === this.tagInput.value || !isUnique) ? false : true;
+        }, true)
     }
 
     checkMaxId() {
-        return !this.tagContainer.length ? 1 : this.tagContainer.reduce((maxId, tag) => {
+        return !this._tagContainer.length ? 1 : this._tagContainer.reduce((maxId, tag) => {
             return tag.id >= maxId ? tag.id + 1 : maxId;
-        },1)
+        }, 1)
     }
 
     createNewTag() {
         let newTag = new Tag(this.tagInput.value);
         newTag.id = this.checkMaxId();
         this.tagInput.value = '';
-        this.tagContainer.push(newTag);
+        this._tagContainer.push(newTag);
         return newTag;
     }
 
@@ -76,17 +115,40 @@ export class TagList {
         this.display.querySelectorAll('.tag').forEach((tag) => {
             tag.remove();
         });
-        this.tagContainer.splice(0);
+        this._tagContainer.splice(0);
     }
 
     deleteTag(deleteIcon) {
         // console.log(deleteIcon.parentNode)
-        let parentId = +(deleteIcon.parentNode.id.match(/\d+/)||[])[0];
-        this.tagContainer = this.tagContainer.filter((tag)=>{
+        let parentId = +(deleteIcon.parentNode.id.match(/\d+/) || [])[0];
+        this._tagContainer = this._tagContainer.filter((tag) => {
             return tag.id !== parentId ? true : false;
         })
-        // console.log(this.tagContainer)
+        // console.log(this._tagContainer)
         deleteIcon.parentNode.remove();
+    }
+
+    toggleReadOnlyMode() {
+        this._isReadOnly = this._isReadOnly ? false : true;
+        if(this._isReadOnly) {
+            this.formButton.setAttribute('disabled', 'true');
+            this.clearButton.setAttribute('disabled', 'true');
+            this.tagInput.setAttribute('disabled', 'true');
+            
+            this.display.querySelectorAll(".tag__delete-icon").forEach((cross)=>{
+                let crossClone = cross.cloneNode(true);
+                cross.parentNode.replaceChild(crossClone, cross);
+            })
+        } else {
+            this.formButton.removeAttribute('disabled');
+            this.clearButton.removeAttribute('disabled');
+            this.tagInput.removeAttribute('disabled');
+            this.display.querySelectorAll(".tag__delete-icon").forEach((cross)=>{
+                cross.addEventListener('click', (event) => {
+                    this.deleteTag(event.currentTarget)
+                })
+            })
+        }
     }
 }
 

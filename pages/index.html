@@ -19,11 +19,26 @@
                 <form class="form" action="#">
                     <label class="form__title" for="tag-input">Чтобы добавить тег, нажмите Enter или Добавить</label>
                     <input class="form__tag-input" id="tag-input" type="text" name="tag-input" placeholder="Введите тег">
-                    <input class="button form__button" type="submit" value="Добавить">
+                    <label class="form__error-message"></label>
+                    <div class="form__control-container">
+                        <input class="button form__button" type="submit" value="Добавить">
+                        <div class="switcher__wrapper">
+                            <label class="switcher">
+                                <input class="switcher__checkbox" type="checkbox">
+                                <span class="switcher__slider"></span>
+                            </label>
+                            <span class="switcher__label">Readonly Mode</span>
+                        </div>
+                    </div>
                 </form>
                 <button class="button clear-button">Очистить поле тегов</button>
             </section>
         </div>
+        <!-- <div class="error input-error invisible">
+            <h2>Ошибка!</h2>
+            <p>Пожалуйста, введите уникальное значение.</p>
+            <button class="modal-window__button button">OK</button>
+        </div> -->
     </main>
     <footer class="footer"></footer>
     <script type="module" src="../scripts/main.js"></script>

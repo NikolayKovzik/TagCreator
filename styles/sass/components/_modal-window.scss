@@ -1,0 +1,24 @@
+@use "../abstracts/variables" as var;
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    background-color: var.$color-primary;
+    color: var.$color-light-xl;
+    font-size: 1.5rem;
+}
+
+.error p {
+    text-align: center;
+}
+
+.error.invisible {
+    display: none;
+}
