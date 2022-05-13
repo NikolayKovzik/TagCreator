@@ -83,41 +83,13 @@ input:focus {
   outline: none;
 }
 
+/*********** second try ********************/
 /* montserrat-300 - latin_cyrillic */
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 300;
-  src: url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.eot");
-  /* IE9 Compat Modes */
-  src: local(""), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.woff2") format("woff2"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.woff") format("woff"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.ttf") format("truetype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.svg#Montserrat") format("svg");
-  /* Legacy iOS */
-}
-/* montserrat-regular - latin_cyrillic */
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.eot");
-  /* IE9 Compat Modes */
-  src: local(""), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.woff2") format("woff2"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.woff") format("woff"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.ttf") format("truetype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.svg#Montserrat") format("svg");
-  /* Legacy iOS */
-}
-/* montserrat-700 - latin_cyrillic */
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  src: url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.eot");
-  /* IE9 Compat Modes */
-  src: local(""), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.woff2") format("woff2"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.woff") format("woff"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.ttf") format("truetype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.svg#Montserrat") format("svg");
-  /* Legacy iOS */
-}
 *,
 html,
 body {
-  font-family: "Montserrat";
-  font-size: 1.3vw;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 18px;
   color: #545454;
 }
 @media (max-width: 1024px) {
@@ -194,14 +166,14 @@ body {
   margin: 0 auto;
 }
 .switcher__wrapper {
-  height: 100px;
+  height: 80px;
 }
 .switcher input {
   display: none;
 }
 .switcher__slider {
   width: 60px;
-  height: 34px;
+  height: 35px;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -263,6 +235,9 @@ body {
 }
 
 .form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 30%;
   padding-top: 50px;
 }
@@ -271,14 +246,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
   gap: 40px;
-  height: 460px;
+  height: 350px;
 }
 .form-section .form__control-container {
   display: flex;
   justify-content: space-between;
 }
 .form-section .form__tag-input {
-  height: 60px;
+  height: 55px;
   border-radius: 10px;
   padding-left: 10px;
   background-color: #FDDCC4;
@@ -294,15 +269,13 @@ body {
 }
 .form-section .form__button {
   width: 40%;
-  height: 60px;
+  height: 45px;
 }
 
 .clear-button {
-  position: fixed;
-  bottom: 5%;
-  right: 5%;
-  width: 16%;
-  height: 75px;
+  width: 50%;
+  height: 45px;
+  margin: 0 auto 30px auto;
 }
 
 .tag {
@@ -311,8 +284,8 @@ body {
   align-items: center;
   min-width: 15%;
   max-width: 30%;
-  padding: 1%;
-  height: 100px;
+  padding: 5px;
+  height: 65px;
   background-color: #F1CDB3;
   border-radius: 5px;
   user-select: none;
@@ -331,6 +304,10 @@ body {
 .tag__svg-cross:hover {
   transition: 0.5s;
   fill: #FFFFFF;
+}
+.tag__svg-cross.read-only-mode:hover {
+  transition: 0.5s;
+  fill: #9f1414;
 }
 .tag__text {
   width: 80%;

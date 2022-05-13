@@ -25,6 +25,9 @@
 }
 
 .form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 30%;
     padding-top: 50px;
     .form {
@@ -32,7 +35,7 @@
         flex-direction: column;
         justify-content: space-between;
         gap: 40px;
-        height: 460px;
+        height: 350px;
 
         &__control-container {
             display: flex;
@@ -40,7 +43,7 @@
         }
 
         &__tag-input {
-            height: 60px;
+            height: 55px;
             border-radius: 10px;
             padding-left: 10px;
             background-color: var.$color-primary-light;
@@ -58,17 +61,15 @@
 
         &__button {
             width: 40%;
-            height: 60px;
+            height: 45px;
         }
     }
 }
 
 .clear-button {
-    position: fixed;
-    bottom: 5%;
-    right: 5%;
-    width: 16%;
-    height: 75px;
+    width: 50%;
+    height: 45px;
+    margin: 0 auto 30px auto;
 }
 
 .tag {
@@ -77,8 +78,8 @@
     align-items: center;
     min-width: 15%;
     max-width: 30%;
-    padding: 1%;
-    height: 100px;
+    padding: 5px;
+    height: 65px;
     background-color: var.$color-primary;
     border-radius: 5px;
     user-select: none;
@@ -98,6 +99,10 @@
         &:hover {
             transition: 0.5s;
             fill: var.$color-light-xl;
+        }
+        &.read-only-mode:hover {
+            transition: 0.5s;
+            fill: var.$color-invalid;
         }
     }
 

@@ -33,11 +33,16 @@ export class TagList {
     }
 
     init() {
+        this.formButton.setAttribute('disabled', 'true');
+        if (!this._tagContainer.length) {
+            this.clearButton.setAttribute('disabled', 'true');
+        }
         this.inputForm.addEventListener('submit', (event) => {
             event.preventDefault();
             let isUnique = this.isInputUnique();
             let isValid = this.isInputValueValid();
             if (isValid !== 'isEmpty' && isValid !== 'inputOverflow' && isUnique) {
+                this.clearButton.removeAttribute('disabled');
                 this.appendNewTag(this.createNewTag());
             }
             if (!isUnique) {
@@ -115,6 +120,7 @@ export class TagList {
         this.display.querySelectorAll('.tag').forEach((tag) => {
             tag.remove();
         });
+        this.clearButton.setAttribute('disabled', 'true');
         this._tagContainer.splice(0);
     }
 
@@ -124,29 +130,38 @@ export class TagList {
         this._tagContainer = this._tagContainer.filter((tag) => {
             return tag.id !== parentId ? true : false;
         })
+        if (!this._tagContainer.length) {
+            this.clearButton.setAttribute('disabled', 'true');
+        }
         // console.log(this._tagContainer)
         deleteIcon.parentNode.remove();
     }
 
     toggleReadOnlyMode() {
         this._isReadOnly = this._isReadOnly ? false : true;
-        if(this._isReadOnly) {
+        if (this._isReadOnly) {
             this.formButton.setAttribute('disabled', 'true');
             this.clearButton.setAttribute('disabled', 'true');
             this.tagInput.setAttribute('disabled', 'true');
-            
-            this.display.querySelectorAll(".tag__delete-icon").forEach((cross)=>{
+
+            this.display.querySelectorAll(".tag__delete-icon").forEach((cross) => {
+                cross.querySelector(".tag__svg-cross").classList.add('read-only-mode');
                 let crossClone = cross.cloneNode(true);
                 cross.parentNode.replaceChild(crossClone, cross);
             })
         } else {
-            this.formButton.removeAttribute('disabled');
-            this.clearButton.removeAttribute('disabled');
+            if (this.isInputValueValid() !== 'isEmpty' && this.isInputValueValid() !== 'inputOverflow' && this.isInputUnique()) {
+                this.formButton.removeAttribute('disabled');
+            }
+            if (this._tagContainer.length) {
+                this.clearButton.removeAttribute('disabled');
+            }
             this.tagInput.removeAttribute('disabled');
-            this.display.querySelectorAll(".tag__delete-icon").forEach((cross)=>{
+            this.display.querySelectorAll(".tag__delete-icon").forEach((cross) => {
+                cross.querySelector(".tag__svg-cross").classList.remove('read-only-mode');
                 cross.addEventListener('click', (event) => {
                     this.deleteTag(event.currentTarget)
-                })
+                });
             })
         }
     }
