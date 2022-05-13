@@ -1,8 +1,8 @@
 import { Tag } from './Tag.js';
 
 export class TagList {
-    constructor() {
-        this.tagContainer = [];
+    constructor(tagArray) {
+        this._tagContainer = tagArray;
         this.inputForm = document.querySelector(".form");
         this.display = document.querySelector(".display-panel");
         this.tagInput = this.inputForm["tag-input"];
@@ -10,6 +10,12 @@ export class TagList {
         this.clearButton = document.querySelector(".clear-button");
         this.inputErrorMessage = document.querySelector(".form__error-message");
         // this.inputErrorWindow = document.querySelector(".input-error");
+        console.log(this._tagContainer)
+        this.init();
+    }
+
+    getTagContainer(){
+        return this._tagContainer
     }
 
     init() {
@@ -17,7 +23,7 @@ export class TagList {
             event.preventDefault();
             let isUnique = this.isInputUnique();
             let isValid = this.isInputValueValid();
-            if ( isValid !== 'isEmpty' && isValid !== 'inputOverflow' && isUnique) {
+            if (isValid !== 'isEmpty' && isValid !== 'inputOverflow' && isUnique) {
                 this.appendNewTag(this.createNewTag());
             }
             if (!isUnique) {
@@ -52,13 +58,13 @@ export class TagList {
     }
 
     isInputUnique() {
-        return this.tagContainer.reduce((isUnique, tag) => {
+        return this._tagContainer.reduce((isUnique, tag) => {
             return (tag.content === this.tagInput.value || !isUnique) ? false : true;
         }, true)
     }
 
     checkMaxId() {
-        return !this.tagContainer.length ? 1 : this.tagContainer.reduce((maxId, tag) => {
+        return !this._tagContainer.length ? 1 : this._tagContainer.reduce((maxId, tag) => {
             return tag.id >= maxId ? tag.id + 1 : maxId;
         }, 1)
     }
@@ -67,7 +73,7 @@ export class TagList {
         let newTag = new Tag(this.tagInput.value);
         newTag.id = this.checkMaxId();
         this.tagInput.value = '';
-        this.tagContainer.push(newTag);
+        this._tagContainer.push(newTag);
         return newTag;
     }
 
@@ -92,16 +98,16 @@ export class TagList {
         this.display.querySelectorAll('.tag').forEach((tag) => {
             tag.remove();
         });
-        this.tagContainer.splice(0);
+        this._tagContainer.splice(0);
     }
 
     deleteTag(deleteIcon) {
         // console.log(deleteIcon.parentNode)
         let parentId = +(deleteIcon.parentNode.id.match(/\d+/) || [])[0];
-        this.tagContainer = this.tagContainer.filter((tag) => {
+        this._tagContainer = this._tagContainer.filter((tag) => {
             return tag.id !== parentId ? true : false;
         })
-        // console.log(this.tagContainer)
+        // console.log(this._tagContainer)
         deleteIcon.parentNode.remove();
     }
 }
