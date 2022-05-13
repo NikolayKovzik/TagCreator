@@ -1,11 +1,9 @@
-import { TagManager } from './TagManager.js';
+import { TagList } from './TagList.js';
 
-export {TagManager} from './TagManager.js';
-
-let tagManager = new TagManager();
+let tagList = new TagList();
 
 
-tagManager.init();
+tagList.init()
 
 
 

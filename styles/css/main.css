@@ -44,7 +44,7 @@ button {
 
 body {
   position: relative;
-  background-color: #CDCDCD;
+  background-color: #CCAb93;
 }
 
 body.stop-scrolling {
@@ -138,6 +138,10 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+.form-section #tag-input.invalid {
+  border-color: red;
+  color: red;
+}
 
 .tag {
   display: flex;
@@ -146,7 +150,7 @@ body {
   min-width: 15%;
   max-width: 32.5%;
   padding: 1%;
-  height: 68px;
+  height: 100px;
   background-color: #F1CDB3;
   border-radius: 5px;
   user-select: none;

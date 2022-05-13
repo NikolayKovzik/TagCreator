@@ -31,6 +31,12 @@
         flex-direction: column;
         gap: 20px;
     }
+    #tag-input{
+        &.invalid {
+            border-color: red;
+            color: red;
+        }
+    }
 }
 
 .tag {
@@ -40,14 +46,14 @@
     min-width: 15%;
     max-width: 32.5%;
     padding: 1%;
-    height: 68px;
+    height: 100px;
     background-color: var.$color-primary;
     border-radius: 5px;
     user-select: none;
     overflow: hidden;
 
     &__delete-icon {
-       // width: 13%;    // WHY WITH THAT PROPERTY TAG BLOCK BECOME FIXED WIDTH?
+        // width: 13%;    // WHY WITH THAT PROPERTY TAG BLOCK BECOME FIXED WIDTH?
         margin: 5px;
         height: 100%;
         width: 30px;
@@ -57,7 +63,7 @@
         width: 100%;
         height: 100%;
         cursor: pointer;
-        &:hover{
+        &:hover {
             transition: 0.5s;
             fill: var.$color-light-xl;
         }
