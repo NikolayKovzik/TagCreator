@@ -83,37 +83,35 @@ input:focus {
   outline: none;
 }
 
+/* montserrat-300 - latin_cyrillic */
 @font-face {
   font-family: "Montserrat";
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Regular.eot");
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Regular.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Regular.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Bold.eot");
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Bold.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Bold.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Bold.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: bold;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Italic.eot");
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Italic.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Italic.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Italic.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Italic.ttf") format("truetype");
-  font-style: italic;
-  font-weight: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Light.eot");
-  src: url("../../../assets/fonts/Montserrat/Montserrat-Light.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Light.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Light.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Light.ttf") format("truetype");
   font-style: normal;
   font-weight: 300;
-  font-display: swap;
+  src: url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.eot");
+  /* IE9 Compat Modes */
+  src: local(""), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.woff2") format("woff2"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.woff") format("woff"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.ttf") format("truetype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-300.svg#Montserrat") format("svg");
+  /* Legacy iOS */
+}
+/* montserrat-regular - latin_cyrillic */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.eot");
+  /* IE9 Compat Modes */
+  src: local(""), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.woff2") format("woff2"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.woff") format("woff"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.ttf") format("truetype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-regular.svg#Montserrat") format("svg");
+  /* Legacy iOS */
+}
+/* montserrat-700 - latin_cyrillic */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.eot");
+  /* IE9 Compat Modes */
+  src: local(""), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.woff2") format("woff2"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.woff") format("woff"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.ttf") format("truetype"), url("../../../assets/fonts/montserrat-v24-latin_cyrillic-700.svg#Montserrat") format("svg");
+  /* Legacy iOS */
 }
 *,
 html,
