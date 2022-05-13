@@ -1,3 +1,250 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: #545454 #FDDCC4;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-weight: 400;
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  display: block;
+  padding: 0px;
+}
+
+body {
+  position: relative;
+  background-color: #CCAb93;
+}
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #545454;
+}
+
+body.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.is-hidden {
+  display: none;
+}
+
+img,
+a,
+span {
+  display: block;
+}
+
+textarea {
+  border: none;
+  outline: none;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Regular.eot");
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Regular.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Regular.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Bold.eot");
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Bold.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Bold.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Bold.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Italic.eot");
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Italic.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Italic.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Italic.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Light.eot");
+  src: url("../../../assets/fonts/Montserrat/Montserrat-Light.eot?#iefix") format("embedded-opentype"), url("../../../assets/fonts/Montserrat/Montserrat-Light.woff2") format("woff2"), url("../../../assets/fonts/Montserrat/Montserrat-Light.woff") format("woff"), url("../../../assets/fonts/Montserrat/Montserrat-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+*,
+html,
+body {
+  font-family: "Montserrat";
+  font-size: 1.3vw;
+  color: #545454;
+}
+@media (max-width: 1024px) {
+  *,
+html,
+body {
+    font-size: 12px;
+  }
+}
+
+.form__title {
+  font-size: 1.6vw;
+}
+.form__tag-input.invalid {
+  color: #9f1414;
+}
+.form__tag-input.invalid::placeholder {
+  color: #9f1414;
+}
+.form__button:hover {
+  transition: 0.5s;
+  color: #CCAb93;
+}
+
+.button {
+  background-color: #FDDCC4;
+  border: 3px solid #F1CDB3;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button:hover {
+  transition: 0.5s;
+  background-color: #FAFAFA;
+}
+.button:disabled, .button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.sections-wrapper {
+  min-height: 100vh;
+  display: flex;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  justify-content: space-around;
+}
+
+.display-panel {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 65%;
+  background-color: #FDDCC4;
+  border-radius: 5px;
+  padding: 1%;
+}
+
+.form-section {
+  width: 25%;
+  padding-top: 50px;
+}
+.form-section .form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.form-section .form__tag-input {
+  height: 60px;
+  border-radius: 10px;
+  padding-left: 10px;
+  background-color: #FDDCC4;
+  border: 3px solid #F1CDB3;
+}
+.form-section .form__tag-input.invalid {
+  border: 3px solid #9f1414;
+}
+.form-section .form__button {
+  margin: 0 auto;
+  width: 50%;
+  height: 60px;
+}
+
+.clear-button {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  width: 16%;
+  height: 75px;
+}
+
+.tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 15%;
+  max-width: 30%;
+  padding: 1%;
+  height: 100px;
+  background-color: #F1CDB3;
+  border-radius: 5px;
+  user-select: none;
+  overflow: hidden;
+}
+.tag__delete-icon {
+  margin: 5px;
+  height: 100%;
+  width: 30px;
+}
+.tag__svg-cross {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.tag__svg-cross:hover {
+  transition: 0.5s;
+  fill: #FFFFFF;
+}
+.tag__text {
+  width: 80%;
+  text-align: justify;
+  word-wrap: break-word;
+  hyphens: auto;
+}
 
 /*# sourceMappingURL=main.css.map */
