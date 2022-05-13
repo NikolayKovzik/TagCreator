@@ -20,7 +20,16 @@
                     <label class="form__title" for="tag-input">Чтобы добавить тег, нажмите Enter или Добавить</label>
                     <input class="form__tag-input" id="tag-input" type="text" name="tag-input" placeholder="Введите тег">
                     <label class="form__error-message"></label>
-                    <input class="button form__button" type="submit" value="Добавить">
+                    <div class="form__control-container">
+                        <input class="button form__button" type="submit" value="Добавить">
+                        <div class="switcher__wrapper">
+                            <label class="switcher">
+                                <input class="switcher__checkbox" type="checkbox">
+                                <span class="switcher__slider"></span>
+                            </label>
+                            <span class="switcher__label">Readonly Mode</span>
+                        </div>
+                    </div>
                 </form>
                 <button class="button clear-button">Очистить поле тегов</button>
             </section>

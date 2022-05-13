@@ -9,13 +9,13 @@ let tagList = new TagList(getLocalStorage());
 
 
 function setLocalStorage() {  
-    localStorage.setItem('tagCreator', JSON.stringify(tagList.getTagContainer())) 
+    localStorage.setItem('tagCreatorLocalStorage', JSON.stringify(tagList.getTagContainer())) 
 }   
 
 function getLocalStorage() {
-    if (localStorage.getItem('tagCreator')) {
-        console.log(JSON.parse(localStorage.getItem('tagCreator')));
-        return JSON.parse(localStorage.getItem('tagCreator'));
+    if (localStorage.getItem('tagCreatorLocalStorage')) {
+        console.log(JSON.parse(localStorage.getItem('tagCreatorLocalStorage')));
+        return JSON.parse(localStorage.getItem('tagCreatorLocalStorage'));
     } else return [];
 }
 
