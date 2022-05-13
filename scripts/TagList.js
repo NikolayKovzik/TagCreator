@@ -10,12 +10,20 @@ export class TagList {
         this.clearButton = document.querySelector(".clear-button");
         this.inputErrorMessage = document.querySelector(".form__error-message");
         // this.inputErrorWindow = document.querySelector(".input-error");
-        console.log(this._tagContainer)
         this.init();
+        if(this._tagContainer.length) {
+            this.restoreDisplay();
+        }
     }
 
     getTagContainer(){
         return this._tagContainer
+    }
+
+    restoreDisplay() {
+        this._tagContainer.forEach((tag)=>{
+            this.appendNewTag(tag);
+        })
     }
 
     init() {
