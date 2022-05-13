@@ -45,27 +45,9 @@ export class TagList {
                 this.clearButton.removeAttribute('disabled');
                 this.appendNewTag(this.createNewTag());
             }
-            if (!isUnique) {
-                this.inputErrorMessage.innerHTML = "Такой тег уже есть!";
-            }
         });
         this.tagInput.addEventListener('input', () => {
-            let isValid = this.isInputValueValid();
-            if (isValid === 'isEmpty') {
-                this.tagInput.classList.add('invalid');
-                this.formButton.setAttribute('disabled', 'true');
-                this.inputErrorMessage.innerHTML = "Нельзя добавить пустой тег.";
-            }
-            if (isValid === 'inputOverflow') {
-                this.tagInput.classList.add('invalid');
-                this.formButton.setAttribute('disabled', 'true');
-                this.inputErrorMessage.innerHTML = "Cлишком длинный тег!";
-            }
-            if (isValid === true) {
-                this.tagInput.classList.remove('invalid');
-                this.formButton.removeAttribute('disabled');
-                this.inputErrorMessage.innerHTML = "";
-            }
+            this.inputEventHandler();
         });
         this.clearButton.addEventListener('click', () => {
             this.clearDisplay();
@@ -73,6 +55,34 @@ export class TagList {
         this.readOnlySwitcher.addEventListener("click", () => {
             this.toggleReadOnlyMode();
         })
+    }
+
+    inputEventHandler() {
+        let isValid = this.isInputValueValid();
+        if (isValid === 'isEmpty') {
+            this.disableFormArea("Нельзя добавить пустой тег.");
+        }
+        if (isValid === 'inputOverflow') {
+            this.disableFormArea("Cлишком длинный тег!");
+        }
+        if (isValid === true) {
+            this.enableFormArea();
+        }
+        if (!this.isInputUnique()) {
+            this.disableFormArea("Такой тег уже есть!");
+        }
+    }
+
+    disableFormArea(message) {
+        this.tagInput.classList.add('invalid');
+        this.formButton.setAttribute('disabled', 'true');
+        this.inputErrorMessage.innerHTML = `${message}`;
+    }
+
+    enableFormArea() {
+        this.tagInput.classList.remove('invalid');
+        this.formButton.removeAttribute('disabled');
+        this.inputErrorMessage.innerHTML = "";
     }
 
     isInputValueValid() {
@@ -148,11 +158,12 @@ export class TagList {
                 cross.querySelector(".tag__svg-cross").classList.add('read-only-mode');
                 let crossClone = cross.cloneNode(true);
                 cross.parentNode.replaceChild(crossClone, cross);
-            })
+            });
+
+            this.tagInput.classList.remove('invalid');
+            this.inputErrorMessage.innerHTML = "";
         } else {
-            if (this.isInputValueValid() !== 'isEmpty' && this.isInputValueValid() !== 'inputOverflow' && this.isInputUnique()) {
-                this.formButton.removeAttribute('disabled');
-            }
+            this.inputEventHandler();
             if (this._tagContainer.length) {
                 this.clearButton.removeAttribute('disabled');
             }
