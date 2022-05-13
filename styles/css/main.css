@@ -44,7 +44,6 @@ button {
   cursor: pointer;
   display: block;
   padding: 0px;
-  background-color: #000000;
 }
 
 body {
@@ -145,6 +144,22 @@ body {
   color: #CCAb93;
 }
 
+.button {
+  background-color: #FDDCC4;
+  border: 3px solid #F1CDB3;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button:hover {
+  transition: 0.5s;
+  background-color: #FAFAFA;
+}
+.button:disabled, .button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 .sections-wrapper {
   min-height: 100vh;
   display: flex;
@@ -156,6 +171,7 @@ body {
 .display-panel {
   display: flex;
   align-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   width: 65%;
@@ -185,21 +201,16 @@ body {
 }
 .form-section .form__button {
   margin: 0 auto;
-  width: 200px;
+  width: 50%;
   height: 60px;
-  background-color: #FDDCC4;
-  border: 3px solid #F1CDB3;
-  border-radius: 10px;
-  cursor: pointer;
 }
-.form-section .form__button:hover {
-  transition: 0.5s;
-  background-color: #FAFAFA;
-}
-.form-section .form__button:disabled, .form-section .form__button[disabled] {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
+
+.clear-button {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  width: 16%;
+  height: 75px;
 }
 
 .tag {
@@ -207,7 +218,7 @@ body {
   justify-content: space-between;
   align-items: center;
   min-width: 15%;
-  max-width: 32.5%;
+  max-width: 30%;
   padding: 1%;
   height: 100px;
   background-color: #F1CDB3;

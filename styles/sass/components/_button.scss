@@ -1,0 +1,18 @@
+@use "../abstracts/variables" as var;
+
+.button {
+    background-color: var.$color-primary-light;
+    border: 3px solid var.$color-primary;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        transition: 0.5s;
+        background-color: var.$color-light-s;
+    }
+    &:disabled,
+    &[disabled] {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+    }
+}
