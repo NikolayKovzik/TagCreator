@@ -5,6 +5,11 @@ html {
     scroll-behavior: smooth;
 }
 
+html,body{
+    scrollbar-width: thin;
+    scrollbar-color:  var.$color-dark-l var.$color-primary-light;
+}
+
 *,
 *::after,
 *::before {
@@ -31,7 +36,6 @@ a:focus {
     cursor: pointer;
 }
 
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -48,6 +52,15 @@ button {
 body {
     position: relative;
     background-color: var.$color-primary-dark;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: var.$color-dark-l;
+    }
+    
 }
 
 body.stop-scrolling {
@@ -68,4 +81,13 @@ img,
 a,
 span {
     display: block;
+}
+
+textarea {
+    border: none;
+    outline: none;
+}
+textarea:focus,
+input:focus {
+    outline: none;
 }

@@ -17,7 +17,6 @@
     flex-wrap: wrap;
     gap: 10px;
     width: 65%;
-    height: auto;
     background-color: var.$color-primary-light;
     border-radius: 5px;
     padding: 1%;
@@ -25,16 +24,35 @@
 
 .form-section {
     width: 25%;
-    height: 100%;
+    padding-top: 50px;
     .form {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-    }
-    #tag-input{
-        &.invalid {
-            border-color: red;
-            color: red;
+        gap: 40px;
+
+        &__tag-input {
+            height: 60px;
+            border-radius: 10px;
+            padding-left: 10px;
+            background-color: var.$color-primary-light;
+            border: 3px solid var.$color-primary;
+            &.invalid {
+                border: 3px solid var.$color-invalid;
+            }
+        }
+
+        &__button {
+            margin: 0 auto;
+            width: 200px;
+            height: 60px;
+            background-color: var.$color-primary-light;
+            border: 3px solid var.$color-primary;
+            border-radius: 10px;
+            cursor: pointer;
+            &:hover {
+                transition: 0.5s;
+                background-color: var.$color-light-s;
+            }
         }
     }
 }

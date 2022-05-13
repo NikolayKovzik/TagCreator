@@ -11,3 +11,26 @@ body {
     }
     color: var.$color-dark-l;
 }
+
+.form {
+    &__title{
+        font-size: 1.6vw;
+    }
+
+    &__tag-input{
+        &.invalid {
+            color: var.$color-invalid;
+            &::placeholder {
+                color: var.$color-invalid;
+            }
+        }
+    }
+
+    &__button {
+        &:hover {
+            transition: 0.5s;
+            color: var.$color-primary-dark;
+        }
+    }
+}
+

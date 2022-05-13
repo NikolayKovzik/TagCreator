@@ -3,6 +3,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: #545454 #FDDCC4;
+}
+
 *,
 *::after,
 *::before {
@@ -46,6 +51,13 @@ body {
   position: relative;
   background-color: #CCAb93;
 }
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #545454;
+}
 
 body.stop-scrolling {
   height: 100%;
@@ -60,6 +72,16 @@ img,
 a,
 span {
   display: block;
+}
+
+textarea {
+  border: none;
+  outline: none;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
 @font-face {
@@ -109,6 +131,20 @@ body {
   }
 }
 
+.form__title {
+  font-size: 1.6vw;
+}
+.form__tag-input.invalid {
+  color: #9f1414;
+}
+.form__tag-input.invalid::placeholder {
+  color: #9f1414;
+}
+.form__button:hover {
+  transition: 0.5s;
+  color: #CCAb93;
+}
+
 .sections-wrapper {
   min-height: 100vh;
   display: flex;
@@ -123,7 +159,6 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   width: 65%;
-  height: auto;
   background-color: #FDDCC4;
   border-radius: 5px;
   padding: 1%;
@@ -131,16 +166,35 @@ body {
 
 .form-section {
   width: 25%;
-  height: 100%;
+  padding-top: 50px;
 }
 .form-section .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 }
-.form-section #tag-input.invalid {
-  border-color: red;
-  color: red;
+.form-section .form__tag-input {
+  height: 60px;
+  border-radius: 10px;
+  padding-left: 10px;
+  background-color: #FDDCC4;
+  border: 3px solid #F1CDB3;
+}
+.form-section .form__tag-input.invalid {
+  border: 3px solid #9f1414;
+}
+.form-section .form__button {
+  margin: 0 auto;
+  width: 200px;
+  height: 60px;
+  background-color: #FDDCC4;
+  border: 3px solid #F1CDB3;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.form-section .form__button:hover {
+  transition: 0.5s;
+  background-color: #FAFAFA;
 }
 
 .tag {

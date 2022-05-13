@@ -18,7 +18,7 @@ export class TagList {
     }
 
     isInputValueValid() {
-        if(!this.tagInput.value || this.tagInput.value.length > 50){
+        if(!this.tagInput.value || this.tagInput.value.length > 40){
             this.tagInput.classList.add('invalid')
         } else return true;
     }
