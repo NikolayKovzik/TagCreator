@@ -143,6 +143,9 @@ body {
   transition: 0.5s;
   color: #CCAb93;
 }
+.form__error-message {
+  color: #9f1414;
+}
 
 .button {
   background-color: #FDDCC4;
@@ -158,6 +161,29 @@ body {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  width: 30%;
+  height: 30%;
+  background-color: #F1CDB3;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+}
+
+.error p {
+  text-align: center;
+}
+
+.error.invisible {
+  display: none;
 }
 
 .sections-wrapper {
@@ -187,7 +213,9 @@ body {
 .form-section .form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 40px;
+  height: 350px;
 }
 .form-section .form__tag-input {
   height: 60px;

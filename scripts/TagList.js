@@ -8,22 +8,38 @@ export class TagList {
         this.tagInput = this.inputForm["tag-input"];
         this.formButton = document.querySelector(".form__button");
         this.clearButton = document.querySelector(".clear-button");
+        this.inputErrorMessage = document.querySelector(".form__error-message");
+        // this.inputErrorWindow = document.querySelector(".input-error");
     }
 
     init() {
         this.inputForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            if (this.isInputValueValid() && this.isInputUnique()) {
+            let isUnique = this.isInputUnique();
+            let isValid = this.isInputValueValid();
+            if ( isValid !== 'isEmpty' && isValid !== 'inputOverflow' && isUnique) {
                 this.appendNewTag(this.createNewTag());
+            }
+            if (!isUnique) {
+                this.inputErrorMessage.innerHTML = "Такой тег уже есть!";
             }
         });
         this.tagInput.addEventListener('input', () => {
-            if (this.isInputValueValid()) {
-                this.tagInput.classList.remove('invalid');
-                this.formButton.removeAttribute('disabled');
-            } else {
+            let isValid = this.isInputValueValid();
+            if (isValid === 'isEmpty') {
                 this.tagInput.classList.add('invalid');
                 this.formButton.setAttribute('disabled', 'true');
+                this.inputErrorMessage.innerHTML = "Нельзя добавить пустой тег.";
+            }
+            if (isValid === 'inputOverflow') {
+                this.tagInput.classList.add('invalid');
+                this.formButton.setAttribute('disabled', 'true');
+                this.inputErrorMessage.innerHTML = "Cлишком длинный тег!";
+            }
+            if (isValid === true) {
+                this.tagInput.classList.remove('invalid');
+                this.formButton.removeAttribute('disabled');
+                this.inputErrorMessage.innerHTML = "";
             }
         });
         this.clearButton.addEventListener('click', () => {
@@ -32,19 +48,19 @@ export class TagList {
     }
 
     isInputValueValid() {
-        return (!this.tagInput.value || this.tagInput.value.length > 40) ? false : true;
+        return (!this.tagInput.value) ? 'isEmpty' : (this.tagInput.value.length > 40) ? 'inputOverflow' : true;
     }
 
     isInputUnique() {
         return this.tagContainer.reduce((isUnique, tag) => {
-            return (tag.content === this.tagInput.value  || !isUnique) ? false : true;
-        },true)
+            return (tag.content === this.tagInput.value || !isUnique) ? false : true;
+        }, true)
     }
 
     checkMaxId() {
         return !this.tagContainer.length ? 1 : this.tagContainer.reduce((maxId, tag) => {
             return tag.id >= maxId ? tag.id + 1 : maxId;
-        },1)
+        }, 1)
     }
 
     createNewTag() {
@@ -81,8 +97,8 @@ export class TagList {
 
     deleteTag(deleteIcon) {
         // console.log(deleteIcon.parentNode)
-        let parentId = +(deleteIcon.parentNode.id.match(/\d+/)||[])[0];
-        this.tagContainer = this.tagContainer.filter((tag)=>{
+        let parentId = +(deleteIcon.parentNode.id.match(/\d+/) || [])[0];
+        this.tagContainer = this.tagContainer.filter((tag) => {
             return tag.id !== parentId ? true : false;
         })
         // console.log(this.tagContainer)

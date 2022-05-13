@@ -32,5 +32,9 @@ body {
             color: var.$color-primary-dark;
         }
     }
+
+    &__error-message {
+        color: var.$color-invalid;
+    }
 }
 
