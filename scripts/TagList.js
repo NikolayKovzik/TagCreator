@@ -60,16 +60,16 @@ export class TagList {
     inputEventHandler() {
         let isValid = this.isInputValueValid();
         if (isValid === 'isEmpty') {
-            this.disableFormArea("Нельзя добавить пустой тег.");
+            this.disableFormArea("Can't add an empty tag.");
         }
         if (isValid === 'inputOverflow') {
-            this.disableFormArea("Cлишком длинный тег!");
+            this.disableFormArea("Tag is too long!");
         }
         if (isValid === true) {
             this.enableFormArea();
         }
         if (!this.isInputUnique()) {
-            this.disableFormArea("Такой тег уже есть!");
+            this.disableFormArea("This tag is already in this sheet!");
         }
     }
 

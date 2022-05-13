@@ -17,12 +17,17 @@
             <section class="display-panel"></section>
             <section class="form-section">
                 <form class="form" action="#">
-                    <label class="form__title" for="tag-input">Чтобы добавить тег, нажмите Enter или Добавить</label>
-                    <input class="form__tag-input" id="tag-input" type="text" name="tag-input"
-                        placeholder="Введите тег">
+                    <label class="form__title" for="tag-input">Press Enter or click button to add tag</label>
+                    <div class="form__tag-input-wrapper">
+                        <input class="form__tag-input" id="tag-input" type="text" name="tag-input"
+                        placeholder="enter tag...">
+                        <svg class="form__svg-cross">
+                            <use xlink:href="../assets/svg/sprite.svg#cross"></use>
+                        </svg>
+                    </div>
                     <label class="form__error-message"></label>
                     <div class="form__control-container">
-                        <input class="button form__button" type="submit" value="Добавить">
+                        <input class="button form__button" type="submit" value="Add tag">
                         <div class="switcher__wrapper">
                             <label class="switcher">
                                 <input class="switcher__checkbox" type="checkbox">
@@ -32,7 +37,7 @@
                         </div>
                     </div>
                 </form>
-                <button class="button clear-button">Очистить поле тегов</button>
+                <button class="button clear-button">Clear tag list</button>
             </section>
         </div>
         <!-- <div class="error input-error invisible">
