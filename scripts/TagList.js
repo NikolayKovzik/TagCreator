@@ -1,10 +1,10 @@
 import { Tag } from './Tag.js';
 
-export class NTagList {
+export class TagList {
     constructor(tagArray) {
+        this._isActive = false;
         this._tagContainer = tagArray;
         this._isReadOnly = false;
-      //  this.init();
     }
 
     get tagContainer() {
@@ -15,8 +15,16 @@ export class NTagList {
         return this._isReadOnly;
     }
 
+    get isActive() {
+        return this._isActive;
+    }
+
     set isReadOnly(value) {
         this._isReadOnly = value;
+    }
+
+    set isActive(value) {
+        this._isActive = value;
     }
 
     checkMaxId() {
@@ -38,9 +46,6 @@ export class NTagList {
         this._tagContainer = this._tagContainer.filter((tag) => {
             return tag.id !== parentId ? true : false;
         })
-        if (!this._tagContainer.length) {
-            super.clearButton.setAttribute('disabled', 'true');
-        }
         // console.log(this._tagContainer)
         deleteIcon.parentNode.remove();
     }

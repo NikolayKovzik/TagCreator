@@ -1,18 +1,11 @@
-import { NTagList } from './NTagList.js';
+import { TagList } from './TagList.js';
 
 export class TagListManager {
-    // constructor(tagListArray, pageIndex) {  // TODO раскоментировать
-    constructor() {
-        // this._tagListContainer = tagListArray; // TODO раскоментировать
-        this._tagListContainer = [];
-        // this._currentPage = pageIndex || 0; // TODO раскоментировать
-        this._currentPage = 0;
-        // this.currentList = this._tagListContainer[pageIndex] || new NTagList([]);  // TODO раскоментировать
-        if(true) {
-            this.currentList = new NTagList([]); 
-            this._tagListContainer.push(this.currentList);
-        }
-        this._isReadOnly = this.currentList.isReadOnly; //|| false;
+    constructor(tagListArray) {
+        this._tagListContainer = tagListArray;
+        this._currentPage = null;
+        this._currentList = null;
+        this._isReadOnly = false;
         this.inputForm = document.querySelector(".form");
         this.display = document.querySelector(".display-panel");
         this.tagInput = this.inputForm["tag-input"];
@@ -22,7 +15,7 @@ export class TagListManager {
         this.readOnlySwitcher = document.querySelector(".switcher__slider");
         // this.inputErrorWindow = document.querySelector(".input-error");
         this.init();
-        // if (this._tagListContainer.length) {  //TODO раскоментировать
+        // if (this._tagListArray.length) {  //TODO раскоментировать
         //     this.restoreDisplay();
         // }    
     }
@@ -35,11 +28,13 @@ export class TagListManager {
         return this._currentPage;
     }
 
-    
     init() {
+        this.initCurrentPageAndCurrentList();
+        this._currentList.isActive = true;
+        this._isReadOnly = this._currentList.isReadOnly;
         this.formButton.setAttribute('disabled', 'true');
-       // this.formButton.setAttribute('disabled', `this.currentList.tagContainer.length `); ?????
-        if (!this.currentList.tagContainer.length) {
+        // this.formButton.setAttribute('disabled', `this._currentList.tagContainer.length `); ?????
+        if (!this._currentList.tagContainer.length) {
             this.clearButton.setAttribute('disabled', 'true');
         }
         this.inputForm.addEventListener('submit', (event) => {
@@ -48,7 +43,7 @@ export class TagListManager {
             let isValid = this.isInputValueValid();
             if (isValid !== 'isEmpty' && isValid !== 'inputOverflow' && isUnique) {
                 this.clearButton.removeAttribute('disabled');
-                this.appendNewTag(this.currentList.createNewTag(this.tagInput.value));
+                this.appendNewTag(this._currentList.createNewTag(this.tagInput.value));
                 this.tagInput.value = '';
             }
         });
@@ -63,14 +58,38 @@ export class TagListManager {
         })
     }
 
+    initCurrentPageAndCurrentList() {
+        let index = this.findActivePageIndex();
+        if (index !== false && index !== -1) {
+            this._currentPage = index;
+            this._currentList = this._tagListContainer[index];
+        }
+        else {
+            this._currentPage = 0;
+            this._currentList = new TagList([]);
+            this._tagListContainer.push(this._currentList);
+        }
+    }
+
+    findActivePageIndex() {
+        // this._tagListContainer.forEach((list)=>{
+        //     console.log(list.isActive)
+        // })
+        if (!this._tagListContainer.length)
+            return false;
+        return this._tagListContainer.findIndex((list) => {
+            return list.isActive ? true : false;
+        })
+    }
+
     restoreDisplay() {
-        this.currentList.tagContainer.forEach((tag) => {
+        this._currentList.tagContainer.forEach((tag) => {
             this.appendNewTag(tag);
         })
     }
-    
+
     isInputUnique() {
-        return this.currentList.tagContainer.reduce((isUnique, tag) => {
+        return this._currentList.tagContainer.reduce((isUnique, tag) => {
             return (tag.content === this.tagInput.value || !isUnique) ? false : true;
         }, true)
     }
@@ -92,7 +111,10 @@ export class TagListManager {
         </div>`;
         this.display.append(newTagElement);
         this.display.lastElementChild.querySelector(".tag__delete-icon").addEventListener('click', (event) => {
-            this.currentList.deleteTag(event.currentTarget)
+            this._currentList.deleteTag(event.currentTarget);
+            if (!this._currentList.tagContainer.length) {
+                this.clearButton.setAttribute('disabled', 'true');
+            }
         })
     }
 
@@ -129,12 +151,12 @@ export class TagListManager {
             tag.remove();
         });
         this.clearButton.setAttribute('disabled', 'true');
-        this.currentList.tagContainer.splice(0);
+        this._currentList.tagContainer.splice(0);
     }
 
     toggleReadOnlyMode() {
-        this.currentList.isReadOnly = this.currentList.isReadOnly ? false : true;
-        if (this.currentList.isReadOnly) {
+        this._currentList.isReadOnly = this._currentList.isReadOnly ? false : true;
+        if (this._currentList.isReadOnly) {
             this.formButton.setAttribute('disabled', 'true');
             this.clearButton.setAttribute('disabled', 'true');
             this.tagInput.setAttribute('disabled', 'true');
@@ -149,14 +171,17 @@ export class TagListManager {
             this.inputErrorMessage.innerHTML = "";
         } else {
             this.inputEventHandler();
-            if (this.currentList.tagContainer.length) {
+            if (this._currentList.tagContainer.length) {
                 this.clearButton.removeAttribute('disabled');
             }
             this.tagInput.removeAttribute('disabled');
             this.display.querySelectorAll(".tag__delete-icon").forEach((cross) => {
                 cross.querySelector(".tag__svg-cross").classList.remove('read-only-mode');
                 cross.addEventListener('click', (event) => {
-                    this.currentList.deleteTag(event.currentTarget)
+                    this._currentList.deleteTag(event.currentTarget);
+                    if (!this._currentList.tagContainer.length) {
+                        this.clearButton.setAttribute('disabled', 'true');
+                    }
                 });
             })
         }
