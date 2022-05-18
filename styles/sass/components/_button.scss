@@ -16,3 +16,32 @@
         color: #666666;
     }
 }
+
+.display-panel {
+    &__close-button {
+        position: absolute;
+        right: -15px;
+        top: -15px;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        background-color: transparent;
+        border: 2px solid var.$color-dark-l;
+        transition: 0.5s;
+        &:hover{
+            border: 2px solid var.$color-light-s;
+            .display-panel__svg-cross{
+                fill: var.$color-light-s;
+            }
+        }
+    }
+
+    &__svg-cross {
+        width: 12px;
+        height: 12px;
+        transition: 0.5s;
+    }
+}
