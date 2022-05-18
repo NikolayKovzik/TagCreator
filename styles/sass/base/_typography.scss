@@ -41,3 +41,13 @@ body {
     }
 }
 
+
+.pagination {
+    &__current-page {
+        text-align: center;
+        user-select: none;
+        line-height: 35px;
+        font-size: 25px;
+    }
+}
+

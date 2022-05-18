@@ -9,12 +9,12 @@ let tagListManager = new TagListManager(getLocalStorage());
 
 
 function setLocalStorage() {
-    localStorage.setItem('tagCreatorLocalStorage', JSON.stringify(tagListManager.tagListContainer))
+    localStorage.setItem('tagCreatorLocalSStorage', JSON.stringify(tagListManager.tagListContainer))
 }
 
 function getLocalStorage() {
-    if (localStorage.getItem('tagCreatorLocalStorage')) {
-        console.log(JSON.parse(localStorage.getItem('tagCreatorLocalStorage')));
-        return JSON.parse(localStorage.getItem('tagCreatorLocalStorage'));
+    if (localStorage.getItem('tagCreatorLocalSStorage')) {
+        console.log(JSON.parse(localStorage.getItem('tagCreatorLocalSStorage')));
+        return JSON.parse(localStorage.getItem('tagCreatorLocalSStorage'));
     } else return [];
 }

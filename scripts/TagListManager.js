@@ -7,7 +7,7 @@ export class TagListManager {
         this._currentList = null;
         this._isReadOnly = false;
         this.inputForm = document.querySelector(".form");
-        this.display = document.querySelector(".display-panel");
+        this.display = document.querySelector(".display-panel__list");
         this.tagInput = this.inputForm["tag-input"];
         this.formButton = document.querySelector(".form__button");
         this.clearButton = document.querySelector(".clear-button");

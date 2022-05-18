@@ -14,7 +14,27 @@
     <header class="header"></header>
     <main class="main">
         <div class="sections-wrapper">
-            <section class="display-panel"></section>
+            <section class="display-panel">
+                <div class="display-panel__inner">
+                    <div class="display-panel__list">
+                    </div>
+                </div>
+                <div class="display-panel__pagination-wrapper">
+                    <div class="pagination">
+                        <div class="pagination__previous-page">
+                            <svg class="pagination__svg-previous">
+                                <use xlink:href="../assets/svg/sprite.svg#prev-page"></use>
+                            </svg>
+                        </div>
+                        <span class="pagination__current-page">1</span>
+                        <div class="pagination__next-page">
+                            <svg class="pagination__svg-next">
+                                <use xlink:href="../assets/svg/sprite.svg#next-page"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section class="form-section">
                 <form class="form" action="#">
                     <label class="form__title" for="tag-input">Press Enter or click button to add tag</label>

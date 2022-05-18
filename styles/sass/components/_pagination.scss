@@ -1,0 +1,27 @@
+@use "../abstracts/variables" as var;
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    &__current-page {
+        display: block;
+        border: 3px solid var.$color-dark-l;
+        width: 40px;
+        border-radius: 50%;
+    }
+
+    &__svg-previous,
+    &__svg-next {
+        fill: var.$color-dark-l;
+        cursor: pointer;
+        height: 40px;
+        width: 40px;
+        transition: 0.5s;
+        &:hover {
+            fill: var.$color-dark-m;
+        }
+    }
+}
+
+
