@@ -4,6 +4,7 @@ export class TagListManager {
     constructor(restoredArray) {
         this._tagListContainer = restoredArray.length ? this.recreatingMethodsOfLists(restoredArray) : [];
         this._currentPage = null;
+        this._lastPage = null;
         this._currentList = null;
         this._isReadOnly = false;
         this.inputForm = document.querySelector(".form");
@@ -11,6 +12,10 @@ export class TagListManager {
         this.tagInput = this.inputForm["tag-input"];
         this.formButton = document.querySelector(".form__button");
         this.clearButton = document.querySelector(".clear-button");
+        this.removeAllButton = document.querySelector(".remove-button");
+        this.addListButton = document.querySelector(".add-list-button");
+        this.closeDisplayButton = document.querySelector(".display-panel__close-button");
+        this.currentPageElement = document.querySelector(".pagination__current-page");
         this.inputErrorMessage = document.querySelector(".form__error-message");
         this.readOnlySwitcher = document.querySelector(".switcher__slider");
         // this.inputErrorWindow = document.querySelector(".input-error");
@@ -30,6 +35,7 @@ export class TagListManager {
 
     init() {
         this.initCurrentPageAndCurrentList();
+        this._lastPage = !this._tagListContainer.length ? 0 : this._tagListContainer.length - 1;
         this._currentList.isActive = true;
         this._isReadOnly = this._currentList.isReadOnly;
         this.formButton.setAttribute('disabled', 'true');
@@ -54,6 +60,10 @@ export class TagListManager {
         });
         this.clearButton.addEventListener('click', () => {
             this.clearDisplay();
+            this._currentList.clearList();
+        });
+        this.addListButton.addEventListener('click', () => {
+            this.addNewList();
         });
         this.readOnlySwitcher.addEventListener("click", () => {
             this.toggleReadOnlyMode();
@@ -166,7 +176,19 @@ export class TagListManager {
             tag.remove();
         });
         this.clearButton.setAttribute('disabled', 'true');
-        this._currentList.tagContainer.splice(0);
+    }
+
+    addNewList() {
+        this.clearDisplay();
+        this._lastPage++;
+        this._currentPage = this._lastPage;
+        this.updateDisplayedCurrentValue();
+        this._currentList = new TagList([]);
+        this._tagListContainer.push(this._currentList);
+    }
+
+    updateDisplayedCurrentValue() {
+        this.currentPageElement.innerHTML = `${this._currentPage}`;
     }
 
     toggleReadOnlyMode() {

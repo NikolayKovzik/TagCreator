@@ -49,4 +49,8 @@ export class TagList {
         // console.log(this._tagContainer)
         deleteIcon.parentNode.remove();
     }
+
+    clearList() {
+        this._tagContainer.splice(0);
+    }
 }
