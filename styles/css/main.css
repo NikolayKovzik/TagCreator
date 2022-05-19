@@ -100,6 +100,11 @@ body {
   }
 }
 
+.button:hover {
+  transition: 0.5s;
+  color: #000000;
+}
+
 .form__title {
   font-size: 22px;
 }
@@ -113,10 +118,6 @@ body {
 }
 .form__tag-input.invalid::placeholder {
   color: #9f1414;
-}
-.form__button:hover {
-  transition: 0.5s;
-  color: #CCAb93;
 }
 .form__error-message {
   color: #9f1414;
@@ -145,6 +146,27 @@ body {
   color: #666666;
 }
 
+.form__button {
+  width: 40%;
+  height: 45px;
+}
+
+.clear-button {
+  width: 50%;
+  height: 45px;
+  margin: 30px auto;
+}
+
+.remove-button {
+  width: 20%;
+  height: 45px;
+}
+
+.add-list-button {
+  height: 45px;
+  width: 20%;
+}
+
 .display-panel__close-button {
   position: absolute;
   right: -15px;
@@ -155,12 +177,13 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  background-color: transparent;
+  background-color: #B2B2B2;
   border: 2px solid #545454;
   transition: 0.5s;
 }
 .display-panel__close-button:hover {
   border: 2px solid #FAFAFA;
+  background-color: #545454;
 }
 .display-panel__close-button:hover .display-panel__svg-cross {
   fill: #FAFAFA;
@@ -213,6 +236,7 @@ body {
   width: 60px;
   height: 35px;
   position: absolute;
+  user-select: none;
   cursor: pointer;
   top: 0;
   left: 0;
@@ -271,7 +295,7 @@ body {
   transition: 0.5s;
 }
 .pagination__svg-previous:hover, .pagination__svg-next:hover {
-  fill: #B2B2B2;
+  fill: #000000;
 }
 
 .sections-wrapper {
@@ -316,12 +340,12 @@ body {
   background-color: #F1CDB3;
   border-radius: 5px;
 }
-.display-panel__pagination-wrapper {
+.display-panel__control-container {
   width: 100%;
   padding-top: 15px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: space-around;
+  align-items: center;
   min-height: calc(13vh - 30px);
   background-color: #CCAb93;
 }
@@ -371,10 +395,11 @@ body {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  fill: #545454;
 }
 .form-section .form__svg-cross:hover {
+  fill: #000000;
   transition: 0.5s;
-  fill: #FFFFFF;
 }
 .form-section .form__svg-cross.read-only-mode:hover {
   transition: 0.5s;
@@ -387,16 +412,6 @@ body {
     width: 20px;
     height: 20px;
   }
-}
-.form-section .form__button {
-  width: 40%;
-  height: 45px;
-}
-
-.clear-button {
-  width: 50%;
-  height: 45px;
-  margin: 30px auto;
 }
 
 .tag {

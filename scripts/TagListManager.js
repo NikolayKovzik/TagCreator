@@ -1,8 +1,8 @@
 import { TagList } from './TagList.js';
 
 export class TagListManager {
-    constructor(tagListArray) {
-        this._tagListContainer = tagListArray;
+    constructor(restoredArray) {
+        this._tagListContainer = restoredArray.length ? this.recreatingMethodsOfLists(restoredArray) : [];
         this._currentPage = null;
         this._currentList = null;
         this._isReadOnly = false;
@@ -15,7 +15,7 @@ export class TagListManager {
         this.readOnlySwitcher = document.querySelector(".switcher__slider");
         // this.inputErrorWindow = document.querySelector(".input-error");
         this.init();
-        // if (this._tagListArray.length) {  //TODO раскоментировать
+        // if (this.restoredArray.length) {  //TODO раскоментировать
         //     this.restoreDisplay();
         // }    
     }
@@ -36,6 +36,8 @@ export class TagListManager {
         // this.formButton.setAttribute('disabled', `this._currentList.tagContainer.length `); ?????
         if (!this._currentList.tagContainer.length) {
             this.clearButton.setAttribute('disabled', 'true');
+        } else {
+            this.displayRestoredList();
         }
         this.inputForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -78,11 +80,24 @@ export class TagListManager {
         if (!this._tagListContainer.length)
             return false;
         return this._tagListContainer.findIndex((list) => {
-            return list.isActive ? true : false;
+            console.log(list)                                  
+            return list._isActive ? true : false;  
         })
     }
 
-    restoreDisplay() {
+    recreatingMethodsOfLists(restoredArray) {
+        let newTagListContainer = [];
+        restoredArray.forEach((list) => {
+            let newList = new TagList();
+            for (let prop in list) {
+                newList[prop] = list[prop];
+            }
+            newTagListContainer.push(newList);
+        })
+        return newTagListContainer;
+    }
+
+    displayRestoredList() {
         this._currentList.tagContainer.forEach((tag) => {
             this.appendNewTag(tag);
         })

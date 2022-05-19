@@ -12,6 +12,13 @@ body {
     color: var.$color-dark-l;
 }
 
+.button {
+    &:hover {
+        transition: 0.5s;
+        color: var.$color-dark-xl;
+    }
+}
+
 .form {
     &__title{
         font-size: 22px;
@@ -26,13 +33,6 @@ body {
             &::placeholder {
                 color: var.$color-invalid;
             }
-        }
-    }
-
-    &__button {
-        &:hover {
-            transition: 0.5s;
-            color: var.$color-primary-dark;
         }
     }
 

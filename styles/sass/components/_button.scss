@@ -17,6 +17,27 @@
     }
 }
 
+.form__button {
+    width: 40%;
+    height: 45px;
+}
+
+.clear-button {
+    width: 50%;
+    height: 45px;
+    margin: 30px auto;
+}
+
+.remove-button {
+    width: 20%;
+    height: 45px;
+}
+
+.add-list-button {
+    height: 45px;
+    width: 20%;
+}
+
 .display-panel {
     &__close-button {
         position: absolute;
@@ -28,11 +49,12 @@
         justify-content: center;
         align-items: center;
         border-radius: 100px;
-        background-color: transparent;
+        background-color: var.$color-dark-m;
         border: 2px solid var.$color-dark-l;
         transition: 0.5s;
         &:hover{
             border: 2px solid var.$color-light-s;
+            background-color: var.$color-dark-l;
             .display-panel__svg-cross{
                 fill: var.$color-light-s;
             }

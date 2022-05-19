@@ -49,12 +49,12 @@
         border-radius: 5px;
     }
 
-    &__pagination-wrapper {
+    &__control-container {
         width: 100%;
         padding-top: 15px;
         display: flex;
-        justify-content: center;
-        align-items: flex-end;
+        justify-content: space-around;
+        align-items: center;
         min-height: calc(13vh - 30px);
         background-color: var.$color-primary-dark;
     }
@@ -107,9 +107,10 @@
             width: 30px;
             height: 30px;
             cursor: pointer;
+            fill: var.$color-dark-l;
             &:hover {
+                fill: var.$color-dark-xl;
                 transition: 0.5s;
-                fill: var.$color-light-xl;
             }
             &.read-only-mode:hover {
                 transition: 0.5s;
@@ -122,18 +123,7 @@
                 height: 20px;
             }
         }
-
-        &__button {
-            width: 40%;
-            height: 45px;
-        }
     }
-}
-
-.clear-button {
-    width: 50%;
-    height: 45px;
-    margin: 30px auto;
 }
 
 .tag {
